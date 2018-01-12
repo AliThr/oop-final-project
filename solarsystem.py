@@ -23,8 +23,7 @@ def factAndComp():
             print "The diameter of " + planet.name + " is " + str(planet.diameter / 1000.0) + " thousand km."
             print "---"
             print "The distance of " + planet.name + " from the Sun is " + str(planet.distanceFromSun / 1000000) + " million km."
-        else:
-            return "That is not a valid planet"
+    return "That is not a valid planet"
 
 def massSort():
     print "A list of the planets in the solar system, sorted by mass, from largest to smallest: "
