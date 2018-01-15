@@ -3,7 +3,7 @@ from solarCompiler import *
 from directory import *
 
 def assist():
-    return """To order the planets alphabetically:    solarsystem.py list \nTo order the planets by mass (highest to lowest):   solarsystem.py list -orderby mass \nTo order the planets by diameter:   solarsystem.py list -orderby diameter"""
+    return """To order the planets alphabetically:    solarsystem.py list \nTo order the planets by mass (highest to lowest):   solarsystem.py list -orderby mass \nTo order the planets by diameter (highest to lowest):   solarsystem.py list -orderby diameter \nTo print details and an interesting fact about an individual planet: solarsystem.py planet <insert planet name>"""
 def alphabetically():
     print "A list of the planets in the solar system, sorted alphabetically: "
     print "---"
