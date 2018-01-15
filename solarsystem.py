@@ -1,5 +1,4 @@
 import sys
-
 from directory import *
 
 
@@ -10,21 +9,21 @@ elif len(sys.argv) == 2:
     if sys.argv[1] == "--help":
         print Help().assist()
     elif sys.argv[1] == "list":
-        print SolarHelper().alphabetically()
+        print SolarHelper().PrintPlanetsSortedAlphabetically()
     else:
         print Help().assist()
 elif len(sys.argv) == 3:
     if sys.argv[1] == "planet":
-        print SolarHelper().factAndComp(sys.argv[2])
+        print SolarHelper().PrintPlanetFactsAndCompisition(sys.argv[2])
     else:
         print Help().assist()
 elif len(sys.argv) == 4:
     if sys.argv[1] == "list":
         if sys.argv[2] == "-orderby":
             if sys.argv[3] == "mass":
-                print SolarHelper().massSort()
+                print SolarHelper().PrintPlanetsSortedByMass()
             elif sys.argv[3] == "diameter":
-                print SolarHelper().diaSort()
+                print SolarHelper().PrintPlanetsSortedByDiameter()
             else:
                 print Help().assist()
         else:

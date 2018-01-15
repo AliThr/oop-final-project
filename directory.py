@@ -63,7 +63,7 @@ class SolarHelper():
     planetsDiameter = []
     newPlanets = []
 
-    def alphabetically(self):
+    def PrintPlanetsSortedAlphabetically(self):
         print "A list of the planets in the solar system, sorted alphabetically: "
         print "---"
         for i in self.planets:
@@ -71,7 +71,7 @@ class SolarHelper():
         return sorted(self.newPlanets)
 
 
-    def factAndComp(self, planetName):
+    def PrintPlanetFactsAndCompisition(self, planetName):
         usrInp = planetName.lower()
         for planet in self.planets:
             if planet.name.lower() == usrInp:
@@ -87,7 +87,7 @@ class SolarHelper():
         return "That is not a valid planet"
 
 
-    def massSort(self):
+    def PrintPlanetsSortedByMass(self):
         print "A list of the planets in the solar system, sorted by mass, from largest to smallest: "
         print "---"
         for i in self.planets:
@@ -100,7 +100,7 @@ class SolarHelper():
         return self.planetsMass
 
 
-    def PrintPlanets(self):
+    def PrintPlanetsSortedByDiameter(self):
         print "A list of the planets in the solar system, sorted by their diameter, from largest to smallest: "
         print "---"
         for i in self.planets:
