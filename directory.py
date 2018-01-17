@@ -34,6 +34,7 @@ class Star():
 
 
 class Help():
+    """This class contains the 'assist' function that is shown whenever an incorrect function is placed in the command line."""
     def __init__(self):
         pass
     
@@ -48,7 +49,8 @@ class SolarHelper():
     """This class contains all functions that are called within 'solarsystem.py'."""
     def __init__(self):
         pass
-    
+
+# Below are the different planets in the solar system. Each of these are using one of two child classes, Terrestrial or Jovian. These classses are themselves defined by the parent class, Planet.
     mercury = Terrestrial("Mercury", 
     3.285 * (10**23), 
     57910000, 
@@ -130,6 +132,7 @@ moon is always facing the planet.""",
     planetsDiameter = []
     newPlanets = []
 
+# This function is used to print the start of the various different lists in the program.
     def startOfAList(self, functionFeature):
         if functionFeature == 'alphabetical':
             print "A list of the planets in the solar system, sorted alphabetically: "
@@ -143,7 +146,7 @@ moon is always facing the planet.""",
         else:
             print "---"
 
-
+# This function is used to compile the different bits of data that are used in 'getPlanetFactsAndCompisition'.
     def planetInformation(self, planet):
         print planet.name + ":"
         print "---"
@@ -156,14 +159,14 @@ moon is always facing the planet.""",
         print "The distance of " + planet.name + " from the Sun is " + str(planet.distanceFromSun / 1000000) + " million km."
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+# This function returns a list of all of the planets in the solar system in alphabetical order
     def getPlanetsSortedAlphabetically(self):
         self.startOfAList('alphabetical')
         for i in self.planets:
             self.newPlanets.append(i.name)
         return sorted(self.newPlanets)
 
-
+# This function returns a the various bits of data passed over from planetInformation.
     def getPlanetFactsAndCompisition(self, planetName):
         usrInp = planetName.lower()
         for planet in self.planets:
@@ -171,7 +174,7 @@ moon is always facing the planet.""",
                 return self.planetInformation(planet)
         return "That is not a valid planet"
 
-
+# This function returns a list of all of the planets in the solar system in order of mass, most to least massive
     def getPlanetsSortedByMass(self):
         self.startOfAList('mass')
         for i in self.planets:
@@ -183,7 +186,7 @@ moon is always facing the planet.""",
                     self.planetsMass.append(j.name)
         return self.planetsMass
 
-
+# This function returns a list of all of the planets in the solar system in order of diameter, largest to smallest
     def getPlanetsSortedByDiameter(self):
         self.startOfAList('diameter')
         for i in self.planets:
