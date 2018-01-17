@@ -130,33 +130,50 @@ moon is always facing the planet.""",
     planetsDiameter = []
     newPlanets = []
 
-    def PrintPlanetsSortedAlphabetically(self):
-        print "A list of the planets in the solar system, sorted alphabetically: "
+    def startOfAList(self, functionFeature):
+        if functionFeature == 'alphabetical':
+            print "A list of the planets in the solar system, sorted alphabetically: "
+            print "---"
+        elif functionFeature == 'mass':
+            print "A list of the planets in the solar system, sorted by mass, from largest to smallest: "
+            print "---"
+        elif functionFeature == 'diameter':
+            print "A list of the planets in the solar system, sorted by their diameter, from largest to smallest: "
+            print "---"
+        else:
+            print "---"
+
+
+    def planetInformation(self, planet):
+        print planet.name + ":"
         print "---"
+        print "Fun fact: " + planet.funFact
+        print "---"
+        print "The composition of this planet is primarily " + planet.composition
+        print "---"
+        print "The diameter of " + planet.name + " is " + str(planet.diameter / 1000.0) + " thousand km."
+        print "---"
+        print "The distance of " + planet.name + " from the Sun is " + str(planet.distanceFromSun / 1000000) + " million km."
+
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    def getPlanetsSortedAlphabetically(self):
+        self.startOfAList('alphabetical')
         for i in self.planets:
             self.newPlanets.append(i.name)
-        print sorted(self.newPlanets)
+        return sorted(self.newPlanets)
 
 
-    def PrintPlanetFactsAndCompisition(self, planetName):
+    def getPlanetFactsAndCompisition(self, planetName):
         usrInp = planetName.lower()
         for planet in self.planets:
             if planet.name.lower() == usrInp:
-                print planet.name + ":"
-                print "---"
-                print "Fun fact: " + planet.funFact
-                print "---"
-                print "The composition of this planet is primarily " + planet.composition
-                print "---"
-                print "The diameter of " + planet.name + " is " + str(planet.diameter / 1000.0) + " thousand km."
-                print "---"
-                return "The distance of " + planet.name + " from the Sun is " + str(planet.distanceFromSun / 1000000) + " million km."
-        print "That is not a valid planet"
+                return self.planetInformation(planet)
+        return "That is not a valid planet"
 
 
-    def PrintPlanetsSortedByMass(self):
-        print "A list of the planets in the solar system, sorted by mass, from largest to smallest: "
-        print "---"
+    def getPlanetsSortedByMass(self):
+        self.startOfAList('mass')
         for i in self.planets:
             self.newPlanets.append(i.mass)
         newPlanetsMass = sorted(self.newPlanets, reverse=True)
@@ -164,12 +181,11 @@ moon is always facing the planet.""",
             for j in self.planets:
                 if j.mass == i:
                     self.planetsMass.append(j.name)
-        print self.planetsMass
+        return self.planetsMass
 
 
-    def PrintPlanetsSortedByDiameter(self):
-        print "A list of the planets in the solar system, sorted by their diameter, from largest to smallest: "
-        print "---"
+    def getPlanetsSortedByDiameter(self):
+        self.startOfAList('diameter')
         for i in self.planets:
             self.newPlanets.append(i.diameter)
         newPlanetsMass = sorted(self.newPlanets, reverse=True)
@@ -177,6 +193,6 @@ moon is always facing the planet.""",
             for j in self.planets:
                 if j.diameter == i:
                     self.planetsDiameter.append(j.name)
-        print self.planetsDiameter
+        return self.planetsDiameter
 
 
