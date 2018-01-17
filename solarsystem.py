@@ -14,7 +14,7 @@ elif len(sys.argv) == 2:
         print Help().assist()
 elif len(sys.argv) == 3:
     if sys.argv[1] == "planet":
-        print SolarHelper().getPlanetFactsAndCompisition(sys.argv[2])
+        SolarHelper().getPlanetFactsAndCompisition(sys.argv[2])
     else:
         print Help().assist()
 elif len(sys.argv) == 4:

@@ -147,7 +147,7 @@ moon is always facing the planet.""",
     def planetInformation(self, planet):
         print planet.name + ":"
         print "---"
-        print "Fun fact: " + planet.funFact
+        print "Fun fact!: " + planet.funFact
         print "---"
         print "The composition of this planet is primarily " + planet.composition
         print "---"
