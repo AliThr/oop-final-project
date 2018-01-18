@@ -1,7 +1,6 @@
 import sys
 from directory import *
 
-
 if len(sys.argv) == 1:
     print Help().assist()
 

@@ -42,7 +42,8 @@ class Help():
         return """To order the planets alphabetically:    solarsystem.py list \n
     To order the planets by mass (highest to lowest):   solarsystem.py list -orderby mass \n
     To order the planets by diameter (highest to lowest):   solarsystem.py list -orderby diameter \n
-    To print details and an interesting fact about an individual planet: solarsystem.py planet <insert planet name>"""
+    To print details and an interesting fact about an individual planet: solarsystem.py planet <insert planet name> \n
+    To request help: solarsystem.py, solarsystem.py --help or any other random string"""
 
 
 class SolarHelper():
@@ -161,10 +162,11 @@ moon is always facing the planet.""",
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------
 # This function returns a list of all of the planets in the solar system in alphabetical order
     def getPlanetsSortedAlphabetically(self):
-        self.startOfAList('alphabetical')
-        for i in self.planets:
-            self.newPlanets.append(i.name)
-        return sorted(self.newPlanets)
+        def getPlanetName(planet):
+            return planet.name
+
+        return self.getSortedPlanets(getPlanetName, False)
+
 
 # This function returns a the various bits of data passed over from planetInformation.
     def getPlanetFactsAndCompisition(self, planetName):
@@ -176,26 +178,26 @@ moon is always facing the planet.""",
 
 # This function returns a list of all of the planets in the solar system in order of mass, most to least massive
     def getPlanetsSortedByMass(self):
-        self.startOfAList('mass')
-        for i in self.planets:
-            self.newPlanets.append(i.mass)
-        newPlanetsMass = sorted(self.newPlanets, reverse=True)
-        for i in newPlanetsMass:
-            for j in self.planets:
-                if j.mass == i:
-                    self.planetsMass.append(j.name)
-        return self.planetsMass
+        def getMass(planet):
+            return planet.mass
+
+        return self.getSortedPlanets(getMass, True)
+
+    def getSortedPlanets(self, sortFunction, reversePlanetSort):
+        def getName(planet):
+            return planet.name
+
+        sortedPlanets = sorted(self.planets, key=sortFunction, reverse = reversePlanetSort)
+        planetNames = map(getName, sortedPlanets)
+        return planetNames
 
 # This function returns a list of all of the planets in the solar system in order of diameter, largest to smallest
     def getPlanetsSortedByDiameter(self):
-        self.startOfAList('diameter')
-        for i in self.planets:
-            self.newPlanets.append(i.diameter)
-        newPlanetsMass = sorted(self.newPlanets, reverse=True)
-        for i in newPlanetsMass:
-            for j in self.planets:
-                if j.diameter == i:
-                    self.planetsDiameter.append(j.name)
-        return self.planetsDiameter
+
+        def getDiameter(planet):
+            return planet.diameter
+
+        return self.getSortedPlanets(getDiameter, True)
+
 
 
