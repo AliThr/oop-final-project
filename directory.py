@@ -42,6 +42,8 @@ class Help():
         return """To order the planets alphabetically:    solarsystem.py list \n
     To order the planets by mass (highest to lowest):   solarsystem.py list -orderby mass \n
     To order the planets by diameter (highest to lowest):   solarsystem.py list -orderby diameter \n
+    To filter the planets by mass (under 1 x 10 ^ 24):   solarsystem.py list -filterby mass \n
+    To filter the planets by diameter (over 58,000km):   solarsystem.py list -filterby diameter \n
     To print details and an interesting fact about an individual planet: solarsystem.py planet <insert planet name> \n
     To request help: solarsystem.py, solarsystem.py --help or any other random string"""
 
@@ -160,15 +162,43 @@ moon is always facing the planet.""",
         print "The distance of " + planet.name + " from the Sun is " + str(planet.distanceFromSun / 1000000) + " million km."
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------
+# This function sorts the planets by whatever input is provided to it.
+    def getSortedPlanets(self, sortFunction, reversePlanetSort):
+        sortedPlanets = sorted(self.planets, key=sortFunction, reverse = reversePlanetSort)
+        planetNames = map(self.getPlanetName, sortedPlanets)
+        return planetNames
+
+# This function 
+    def filterPlanetsByGivenParameter(self, orderedPlanets, filterParameter):
+        filteredPlanets = filter(filterParameter, self.planets)
+        planetNames = map(self.getPlanetName, filteredPlanets)
+        return planetNames
+
+# This function returns the name of an inputted planet.
+    def getPlanetName(self, planet):
+        return planet.name
+
+# This function returns the mass of an inputted planet.
+    def getMass(self, planet):
+        return planet.mass
+
+# This function returns the diameter of an inputted planet.
+    def getDiameter(self, planet):
+        return planet.diameter
+
+# This function provides comparison for planet masses.
+    def provideComparisonPlanetMass(self, planet):
+        return planet.mass < 1 * 10**24
+
+# This function provides comparison for planet diameters.
+    def provideComparisonPlanetDiameter(self, planet):
+        return planet.diameter > 58000
+
 # This function returns a list of all of the planets in the solar system in alphabetical order
     def getPlanetsSortedAlphabetically(self):
-        def getPlanetName(planet):
-            return planet.name
+        return self.getSortedPlanets(self.getPlanetName, False)
 
-        return self.getSortedPlanets(getPlanetName, False)
-
-
-# This function returns a the various bits of data passed over from planetInformation.
+# This function returns the various bits of data passed over from planetInformation.
     def getPlanetFactsAndCompisition(self, planetName):
         usrInp = planetName.lower()
         for planet in self.planets:
@@ -178,26 +208,21 @@ moon is always facing the planet.""",
 
 # This function returns a list of all of the planets in the solar system in order of mass, most to least massive
     def getPlanetsSortedByMass(self):
-        def getMass(planet):
-            return planet.mass
-
-        return self.getSortedPlanets(getMass, True)
-
-    def getSortedPlanets(self, sortFunction, reversePlanetSort):
-        def getName(planet):
-            return planet.name
-
-        sortedPlanets = sorted(self.planets, key=sortFunction, reverse = reversePlanetSort)
-        planetNames = map(getName, sortedPlanets)
-        return planetNames
+        return self.getSortedPlanets(self.getMass, True)
 
 # This function returns a list of all of the planets in the solar system in order of diameter, largest to smallest
     def getPlanetsSortedByDiameter(self):
+         return self.getSortedPlanets(self.getDiameter, True)
 
-        def getDiameter(planet):
-            return planet.diameter
+# This function returns all planets under a given mass
+    def getPlanetsUnderACertainMass(self):
+        orderedPlanets = self.getSortedPlanets(self.getMass, False)
+        return self.filterPlanetsByGivenParameter(orderedPlanets, self.comparePlanetMass)
 
-        return self.getSortedPlanets(getDiameter, True)
+# This function returns all planets over a given diameter
+    def getPlanetsOverACertainDiameter(self):
+        orderedPlanets = self.getSortedPlanets(self.getDiameter, True)
+        return self.filterPlanetsByGivenParameter(orderedPlanets, self.comparePlanetDiameter)
 
 
 

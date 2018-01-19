@@ -25,6 +25,15 @@ elif len(sys.argv) == 4:
                 print SolarHelper().getPlanetsSortedByDiameter()
             else:
                 print Help().assist()
+
+        elif sys.argv[2] == "-filterby":
+            if sys.argv[3] ==  "mass":
+                print SolarHelper().getPlanetsUnderACertainMass()
+            elif sys.argv[3] ==  "diameter":
+                print SolarHelper().getPlanetsOverACertainDiameter()
+            else:
+                print Help().assist()
+
         else:
             print Help().assist()
     else:
