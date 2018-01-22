@@ -21,6 +21,13 @@ class Terrestrial(Planet):
         Planet.__init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod)
         self.composition = 'rock'
 
+class DwarfPlanet(Planet):
+    def __init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod):
+        Planet.__init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod)
+        self.composition = 'rock'
+        self.definition = 'NOT A PLANET'
+
+'''
 class Star():
     """This class defines the different variables to be initiated one every planet."""
     def __init__(self, star_name, star_mass, star_escape_velocity, star_diameter, star_fun_fact, star_surface_temp, star_core_temp):
@@ -31,7 +38,7 @@ class Star():
         self.funFact = star_fun_fact
         self.surfaceTemp = star_surface_temp
         self.coreTemp = star_core_temp
-
+'''
 
 class Help():
     """This class contains the 'assist' function that is shown whenever an incorrect function is placed in the command line."""
@@ -129,8 +136,19 @@ moon is always facing the planet.""",
     49244, 
     14, 
     60182)
-
-    planets = [mercury, venus, earth, mars, jupiter, saturn, uranus, neptune]
+    pluto = DwarfPlanet("Pluto", 
+    1.31 * (10**22), 
+    	5874000000, 
+    """When they changed the definition of a planet in 2006, Pluto was reclassified as a dwarf planet. 
+This is because, while it met the first two rules that previously made up the definition of planet 
+(being it orbits the Sun and has sufficient mass to for its gravity to overcome rigid body forces 
+so that it assumes a hydrostatic equilibrium (nearly round) shape), it does not clear its orbital 
+neighbourhood of all or nearly all distruptive material. This is because its orbit crosses Neptune's 
+orbit, which is 8000 times more massive than pluto itself.""", 
+    2372, 
+    5, 
+    90520)
+    planets = [mercury, venus, earth, mars, jupiter, saturn, uranus, neptune, pluto]
     planetsMass = []
     planetsDiameter = []
     newPlanets = []
@@ -217,12 +235,12 @@ moon is always facing the planet.""",
 # This function returns all planets under a given mass
     def getPlanetsUnderACertainMass(self):
         orderedPlanets = self.getSortedPlanets(self.getMass, False)
-        return self.filterPlanetsByGivenParameter(orderedPlanets, self.comparePlanetMass)
+        return self.filterPlanetsByGivenParameter(orderedPlanets, self.provideComparisonPlanetMass)
 
 # This function returns all planets over a given diameter
     def getPlanetsOverACertainDiameter(self):
         orderedPlanets = self.getSortedPlanets(self.getDiameter, True)
-        return self.filterPlanetsByGivenParameter(orderedPlanets, self.comparePlanetDiameter)
+        return self.filterPlanetsByGivenParameter(orderedPlanets, self.provideComparisonPlanetDiameter)
 
 
 
