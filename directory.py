@@ -2,7 +2,7 @@
 
 class Planet():
     """This class defines the different variables to be initiated one every planet."""
-    def __init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod):
+    def __init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons):
         self.name = planet_name
         self.mass = planet_mass
         self.distanceFromSun = planet_distanceFromSun
@@ -10,20 +10,21 @@ class Planet():
         self.diameter = planet_diameter
         self.moons = number_of_moons
         self.orbitalPeriod = orbitalPeriod
+        self.notableMoons = notableMoons
 
 class Jovian(Planet):
-    def __init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod):
-        Planet.__init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod)
+    def __init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons):
+        Planet.__init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons)
         self.composition = 'gas'
 
 class Terrestrial(Planet):
-    def __init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod):
-        Planet.__init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod)
+    def __init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons):
+        Planet.__init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons)
         self.composition = 'rock'
 
 class DwarfPlanet(Planet):
-    def __init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod):
-        Planet.__init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod)
+    def __init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons):
+        Planet.__init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons)
         self.composition = 'rock'
         self.definition = 'NOT A PLANET'
 
@@ -70,7 +71,8 @@ no atmosphere to keep the heat in. That award goes to Venus, which is 467 C,
 40 C hotter than Mercury.""",
     4879, 
     0, 
-    88)
+    88, 
+    "none")
 
     venus = Terrestrial("Venus", 
     4.867 * (10**24), 
@@ -81,7 +83,8 @@ longer than a it's year. It takes 225 Earth-days to orbit the sun but 243 Earth-
 to complete a single rotation.""", 
     12104, 
     0, 
-    225)
+    225, 
+    "none")
 
     earth = Terrestrial("Earth", 
     5.972 * (10**24), 
@@ -91,7 +94,8 @@ similar to the shape of a football after you sit on it for a while. This is due 
 rotation of the planet forcing the equator out.""", 
     12742, 
     1, 
-    365.25)
+    365.25, 
+    "The Moon")
 
     mars = Terrestrial("Mars", 
     6.39 * (10**23), 
@@ -104,7 +108,8 @@ kilometers above the planet's surface due to its size and the lack of anything e
 around it.""", 
     6779, 
     2, 
-    687)
+    687, 
+    "Phobos, Deimos")
 
     jupiter = Jovian("Jupiter", 
     1.898 * (10**27), 
@@ -113,7 +118,8 @@ around it.""",
     inside of it, and it has been raging for at least 350 years. However, it is shrinking.""", 
     69911, 
     69, 
-    4332.59)
+    4332.59, 
+    "Europa, Ganymede, Io, Callisto")
 
     saturn = Jovian("Saturn", 
     5.683 * (10**26), 
@@ -122,7 +128,8 @@ around it.""",
 That means that if you were able to find a large enough ocean, it would float!""", 
     58232, 
     62, 
-    10759.22)
+    10759.22, 
+    "Titan, Enceladus, Mimas, Dione, Rhea")
 
     uranus = Jovian("Uranus", 
     3.285 * (10**26), 
@@ -131,7 +138,8 @@ That means that if you were able to find a large enough ocean, it would float!""
 side. It is sometimes described as rolling around the sun like a ball.""", 
     50274, 
     27, 
-    30685)
+    30685, 
+    "Titania, Miranda, Umbriel, Aeriel")
 
     neptune = Jovian("Neptune", 
     1.024 * (10**26), 
@@ -142,7 +150,8 @@ It is also tidally locked to the planet, much like our moon. This means that the
 moon is always facing the planet.""", 
     49244, 
     14, 
-    60182)
+    60182, 
+    "Triton, Laomedeia")
 
     pluto = DwarfPlanet("Pluto", 
     1.31 * (10**22), 
@@ -155,7 +164,8 @@ neighbourhood of all or nearly all distruptive material. This is because its orb
 orbit, which is 8000 times more massive than pluto itself.""", 
     2372, 
     5, 
-    90520)
+    90520, 
+    "Charon, Hydra, Nix, Kerberos, Styx")
 
     eris = DwarfPlanet("Eris", 
     1.66 * (10 ** 22), 
@@ -166,7 +176,8 @@ in the kuiper belt, and it therefore has not cleared its orbit of other signific
 it was defined as a dwarf planet, in the same way that Pluto was.""", 
     2326, 
     1, 
-    203830)
+    203830, 
+    "Dysnomia")
 
     makemake = DwarfPlanet("Makemake", 
     2.5 * (10 ** 21), 
@@ -176,16 +187,20 @@ Neptune that it will not be affected by Neptune's gravity (unlike Pluto) and it 
 over the age of the solar system.""", 
     1434, 
     1, 
-    113113.5)
+    113113.5, 
+    "S/2015 (136472) 1")
 
     haumea = DwarfPlanet("Haumea", 
     4.01 * (10 ** 21), 
     6452000000, 
     """Haumea rotates so quickly (a day is only 3.9 hours) that the entire planet has been forced 
-outwards at the equator, causing the dwarf planet to become elliptical.""", 
+outwards at the equator, causing the dwarf planet to become elliptical. This warping is so extreme 
+that the diameter at the equator is 1000km longer than the polar diameter, which is over half of the 
+total equatorial diameter. This makes the planet look like a discus.""", 
     1960, 
     2, 
-    103475.33)
+    103475.33, 
+    "Hi'iaka, Namaka")
 
     ceres = DwarfPlanet("Ceres", 
     8.96 * (10 ** 20), 
@@ -195,7 +210,8 @@ Ceres also accounts for approximately one third of the total mass in the asteroi
 the belt really is).""", 
     950, 
     0, 
-    1680)
+    1680, 
+    "none")
 
 
     planets = [mercury, venus, earth, mars, ceres, jupiter, saturn, uranus, neptune, pluto, haumea, makemake, eris]
@@ -225,11 +241,13 @@ the belt really is).""",
         print "---"
         print "The composition of this planet is primarily " + planet.composition
         print "---"
-        print "The diameter of " + planet.name + " is " + str(planet.diameter / 1000.0) + " thousand km."
+        print "The polar diameter of " + planet.name + " is " + str(planet.diameter / 1000.0) + " thousand km."
         print "---"
         print "The distance of " + planet.name + " from the Sun is " + str(planet.distanceFromSun / 1000000) + " million km."
         print "---"
         print planet.name + " has " + str(planet.moons) + " moon(s)."
+        print "---"
+        print "Moons of " + planet.name + " include: " + planet.notableMoons
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------
 # This function sorts the planets by whatever input is provided to it.
