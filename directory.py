@@ -47,12 +47,12 @@ class Help():
     
     def assist(self):
         return """To order the planets alphabetically:    solarsystem.py list \n
-    To order the planets by mass (highest to lowest):   solarsystem.py list -orderby mass \n
-    To order the planets by diameter (highest to lowest):   solarsystem.py list -orderby diameter \n
-    To filter the planets by mass (under 1 x 10 ^ 24):   solarsystem.py list -filterby mass \n
-    To filter the planets by diameter (over 58,000km):   solarsystem.py list -filterby diameter \n
-    To print details and an interesting fact about an individual planet: solarsystem.py planet <insert planet name> \n
-    To request help: solarsystem.py, solarsystem.py --help or any other random string"""
+To order the planets by mass (highest to lowest):   solarsystem.py list -orderby mass \n
+To order the planets by diameter (highest to lowest):   solarsystem.py list -orderby diameter \n
+To filter the planets by mass (under 1 x 10 ^ 24):   solarsystem.py list -filterby mass \n
+To filter the planets by diameter (over 58,000km):   solarsystem.py list -filterby diameter \n
+To print details and an interesting fact about individual planets: solarsystem.py planet <insert planet name> \n
+To request help: solarsystem.py, solarsystem.py --help or any other random string"""
 
 
 class SolarHelper():
@@ -71,6 +71,7 @@ no atmosphere to keep the heat in. That award goes to Venus, which is 467 C,
     4879, 
     0, 
     88)
+
     venus = Terrestrial("Venus", 
     4.867 * (10**24), 
     108200000, 
@@ -81,6 +82,7 @@ to complete a single rotation.""",
     12104, 
     0, 
     225)
+
     earth = Terrestrial("Earth", 
     5.972 * (10**24), 
     149600000, 
@@ -90,6 +92,7 @@ rotation of the planet forcing the equator out.""",
     12742, 
     1, 
     365.25)
+
     mars = Terrestrial("Mars", 
     6.39 * (10**23), 
     227900000, 
@@ -102,6 +105,7 @@ around it.""",
     6779, 
     2, 
     687)
+
     jupiter = Jovian("Jupiter", 
     1.898 * (10**27), 
     778500000, 
@@ -110,6 +114,7 @@ around it.""",
     69911, 
     69, 
     4332.59)
+
     saturn = Jovian("Saturn", 
     5.683 * (10**26), 
     1429000000, 
@@ -118,6 +123,7 @@ That means that if you were able to find a large enough ocean, it would float!""
     58232, 
     62, 
     10759.22)
+
     uranus = Jovian("Uranus", 
     3.285 * (10**26), 
     2871000000, 
@@ -126,6 +132,7 @@ side. It is sometimes described as rolling around the sun like a ball.""",
     50274, 
     27, 
     30685)
+
     neptune = Jovian("Neptune", 
     1.024 * (10**26), 
     4498000000, 
@@ -136,6 +143,7 @@ moon is always facing the planet.""",
     49244, 
     14, 
     60182)
+
     pluto = DwarfPlanet("Pluto", 
     1.31 * (10**22), 
     	5874000000, 
@@ -148,7 +156,49 @@ orbit, which is 8000 times more massive than pluto itself.""",
     2372, 
     5, 
     90520)
-    planets = [mercury, venus, earth, mars, jupiter, saturn, uranus, neptune, pluto]
+
+    eris = DwarfPlanet("Eris", 
+    1.66 * (10 ** 22), 
+    10120000000, 
+    """Eris is the most massive dwarf planet in the solar system, being 28% more massive than Pluto. 
+It was also considered for the 10th planet until 2006, when the definition of a planet changed, as Eris is 
+in the kuiper belt, and it therefore has not cleared its orbit of other significantly sized objects, 
+it was defined as a dwarf planet, in the same way that Pluto was.""", 
+    2326, 
+    1, 
+    203830)
+
+    makemake = DwarfPlanet("Makemake", 
+    2.5 * (10 ** 21), 
+    6850000000, 
+    """Makemake is a typical Kuiper belt object. This means that its orbit lies far enough away from 
+Neptune that it will not be affected by Neptune's gravity (unlike Pluto) and it will remain stable 
+over the age of the solar system.""", 
+    1434, 
+    1, 
+    113113.5)
+
+    haumea = DwarfPlanet("Haumea", 
+    4.01 * (10 ** 21), 
+    6452000000, 
+    """Haumea rotates so quickly (a day is only 3.9 hours) that the entire planet has been forced 
+outwards at the equator, causing the dwarf planet to become elliptical.""", 
+    1960, 
+    2, 
+    103475.33)
+
+    ceres = DwarfPlanet("Ceres", 
+    8.96 * (10 ** 20), 
+    413700000, 
+    """Ceres is the only dwarf planet permanently inside Neptune's orbit, and the only one without any moons. 
+Ceres also accounts for approximately one third of the total mass in the asteroid belt (a display of just how empty 
+the belt really is).""", 
+    950, 
+    0, 
+    1680)
+
+
+    planets = [mercury, venus, earth, mars, ceres, jupiter, saturn, uranus, neptune, pluto, haumea, makemake, eris]
     planetsMass = []
     planetsDiameter = []
     newPlanets = []
@@ -178,6 +228,8 @@ orbit, which is 8000 times more massive than pluto itself.""",
         print "The diameter of " + planet.name + " is " + str(planet.diameter / 1000.0) + " thousand km."
         print "---"
         print "The distance of " + planet.name + " from the Sun is " + str(planet.distanceFromSun / 1000000) + " million km."
+        print "---"
+        print planet.name + " has " + str(planet.moons) + " moon(s)."
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------
 # This function sorts the planets by whatever input is provided to it.
@@ -186,7 +238,7 @@ orbit, which is 8000 times more massive than pluto itself.""",
         planetNames = map(self.getPlanetName, sortedPlanets)
         return planetNames
 
-# This function 
+# This function filters planets by a given parameter that is passed to it.
     def filterPlanetsByGivenParameter(self, orderedPlanets, filterParameter):
         filteredPlanets = filter(filterParameter, self.planets)
         planetNames = map(self.getPlanetName, filteredPlanets)
