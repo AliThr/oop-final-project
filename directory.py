@@ -247,7 +247,7 @@ the belt really is).""",
         print "---"
         print planet.name + " has " + str(planet.moons) + " moon(s)."
         print "---"
-        print "Moons of " + planet.name + " include: " + planet.notableMoons
+        print "Some moons of " + planet.name + " include: " + planet.notableMoons
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------
 # This function sorts the planets by whatever input is provided to it.
