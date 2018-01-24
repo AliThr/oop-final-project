@@ -71,7 +71,7 @@ class SolarHelper():
     def __init__(self):
         pass
 
-# Below are the different planets in the solar system. Each of these are using one of two child classes, Terrestrial or Jovian. These classses are themselves defined by the parent class, Planet.
+# Below are the different planets in the solar system. Each of these are using one of three child classes, Terrestrial, Jovian or DwarfPlanet. These classses are themselves defined by the parent class, Planet.
     mercury = Terrestrial("Mercury", 
     3.285 * (10**23), 
     57910000, 
@@ -271,6 +271,8 @@ the belt really is).""",
         print planet.name + " has " + str(planet.moons) + " moon(s)."
         print "---"
         print "Some moons of " + planet.name + " include: " + planet.notableMoons
+        print "---"
+        print "The surface temperature (or effective temperature for gas planets) for " + planet.name + " is " + planet.surfaceTemperature
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------
 # This function sorts the planets by whatever input is provided to it.
@@ -342,5 +344,3 @@ the belt really is).""",
     def getPlanetsOverACertainDiameter(self):
         orderedPlanets = self.getSortedPlanets(self.getDiameter, True)
         return self.filterPlanetsByGivenParameter(orderedPlanets, self.provideComparisonPlanetDiameter)
-
-
