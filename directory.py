@@ -2,7 +2,7 @@
 
 class Planet():
     """This class defines the different variables to be initiated one every planet."""
-    def __init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons):
+    def __init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons, surfaceTemperature):
         self.name = planet_name
         self.mass = planet_mass
         self.distanceFromSun = planet_distanceFromSun
@@ -11,20 +11,21 @@ class Planet():
         self.moons = number_of_moons
         self.orbitalPeriod = orbitalPeriod
         self.notableMoons = notableMoons
+        self.surfaceTemperature = surfaceTemperature
 
 class Jovian(Planet):
-    def __init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons):
-        Planet.__init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons)
+    def __init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons, surfaceTemperature):
+        Planet.__init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons, surfaceTemperature)
         self.composition = 'gas'
 
 class Terrestrial(Planet):
-    def __init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons):
-        Planet.__init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons)
+    def __init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons, surfaceTemperature):
+        Planet.__init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons, surfaceTemperature)
         self.composition = 'rock'
 
 class DwarfPlanet(Planet):
-    def __init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons):
-        Planet.__init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons)
+    def __init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons, surfaceTemperature):
+        Planet.__init__(self, planet_name, planet_mass, planet_distanceFromSun, planet_funFact, planet_diameter, number_of_moons, orbitalPeriod, notableMoons, surfaceTemperature)
         self.composition = 'rock'
         self.definition = 'NOT A PLANET'
 
@@ -47,12 +48,21 @@ class Help():
         pass
     
     def assist(self):
-        return """To order the planets alphabetically:    solarsystem.py list \n
-To order the planets by mass (highest to lowest):   solarsystem.py list -orderby mass \n
-To order the planets by diameter (highest to lowest):   solarsystem.py list -orderby diameter \n
-To filter the planets by mass (under 1 x 10 ^ 24):   solarsystem.py list -filterby mass \n
-To filter the planets by diameter (over 58,000km):   solarsystem.py list -filterby diameter \n
-To print details and an interesting fact about individual planets: solarsystem.py planet <insert planet name> \n
+        return """\n
+           _                          _                               
+ ___  ___ | | __ _ _ __ ___ _   _ ___| |_ ___ _ __ ___    _ __  _   _ 
+/ __|/ _ \| |/ _` | '__/ __| | | / __| __/ _ \ '_ ` _ \  | '_ \| | | |
+\__ \ (_) | | (_| | |  \__ \ |_| \__ \ ||  __/ | | | | |_| |_) | |_| |
+|___/\___/|_|\__,_|_|  |___/\__, |___/\__\___|_| |_| |_(_) .__/ \__, |
+                            |___/                        |_|    |___/ 
+
+
+To order the planets alphabetically:    solarsystem.py list\n
+To order the planets by mass (highest to lowest):   solarsystem.py list -orderby mass\n
+To order the planets by diameter (highest to lowest):   solarsystem.py list -orderby diameter\n
+To filter the planets by mass (under 1 x 10 ^ 24):   solarsystem.py list -filterby mass\n
+To filter the planets by diameter (over 58,000km):   solarsystem.py list -filterby diameter\n
+To print details and an interesting fact about individual planets: solarsystem.py planet <insert planet name>\n
 To request help: solarsystem.py, solarsystem.py --help or any other random string"""
 
 
@@ -72,7 +82,8 @@ no atmosphere to keep the heat in. That award goes to Venus, which is 467 C,
     4879, 
     0, 
     88, 
-    "none")
+    "none",
+    "between -173 C and 427 C")
 
     venus = Terrestrial("Venus", 
     4.867 * (10**24), 
@@ -84,7 +95,8 @@ to complete a single rotation.""",
     12104, 
     0, 
     225, 
-    "none")
+    "none",
+    "462 C")
 
     earth = Terrestrial("Earth", 
     5.972 * (10**24), 
@@ -95,7 +107,8 @@ rotation of the planet forcing the equator out.""",
     12742, 
     1, 
     365.25, 
-    "The Moon")
+    "The Moon",
+    "-88 C to 58 C")
 
     mars = Terrestrial("Mars", 
     6.39 * (10**23), 
@@ -109,7 +122,8 @@ around it.""",
     6779, 
     2, 
     687, 
-    "Phobos, Deimos")
+    "Phobos, Deimos",
+    "-173 C to 427 C")
 
     jupiter = Jovian("Jupiter", 
     1.898 * (10**27), 
@@ -119,7 +133,8 @@ around it.""",
     69911, 
     69, 
     4332.59, 
-    "Europa, Ganymede, Io, Callisto")
+    "Europa, Ganymede, Io, Callisto",
+    "-148 C")
 
     saturn = Jovian("Saturn", 
     5.683 * (10**26), 
@@ -129,7 +144,8 @@ That means that if you were able to find a large enough ocean, it would float!""
     58232, 
     62, 
     10759.22, 
-    "Titan, Enceladus, Mimas, Dione, Rhea")
+    "Titan, Enceladus, Mimas, Dione, Rhea",
+    "-178 C")
 
     uranus = Jovian("Uranus", 
     3.285 * (10**26), 
@@ -139,7 +155,8 @@ side. It is sometimes described as rolling around the sun like a ball.""",
     50274, 
     27, 
     30685, 
-    "Titania, Miranda, Umbriel, Aeriel")
+    "Titania, Miranda, Umbriel, Aeriel",
+    "-216 C")
 
     neptune = Jovian("Neptune", 
     1.024 * (10**26), 
@@ -151,7 +168,8 @@ moon is always facing the planet.""",
     49244, 
     14, 
     60182, 
-    "Triton, Laomedeia")
+    "Triton, Laomedeia",
+    "-214 C")
 
     pluto = DwarfPlanet("Pluto", 
     1.31 * (10**22), 
@@ -165,7 +183,8 @@ orbit, which is 8000 times more massive than pluto itself.""",
     2372, 
     5, 
     90520, 
-    "Charon, Hydra, Nix, Kerberos, Styx")
+    "Charon, Hydra, Nix, Kerberos, Styx",
+    "-229 C")
 
     eris = DwarfPlanet("Eris", 
     1.66 * (10 ** 22), 
@@ -177,7 +196,8 @@ it was defined as a dwarf planet, in the same way that Pluto was.""",
     2326, 
     1, 
     203830, 
-    "Dysnomia")
+    "Dysnomia",
+    "-231 C")
 
     makemake = DwarfPlanet("Makemake", 
     2.5 * (10 ** 21), 
@@ -188,7 +208,8 @@ over the age of the solar system.""",
     1434, 
     1, 
     113113.5, 
-    "S/2015 (136472) 1")
+    "S/2015 (136472) 1",
+    "-239 C")
 
     haumea = DwarfPlanet("Haumea", 
     4.01 * (10 ** 21), 
@@ -200,7 +221,8 @@ total equatorial diameter. This makes the planet look like a discus.""",
     1960, 
     2, 
     103475.33, 
-    "Hi'iaka, Namaka")
+    "Hi'iaka, Namaka",
+    "-241 C")
 
     ceres = DwarfPlanet("Ceres", 
     8.96 * (10 ** 20), 
@@ -211,7 +233,8 @@ the belt really is).""",
     950, 
     0, 
     1680, 
-    "none")
+    "none",
+    "-105 C")
 
 
     planets = [mercury, venus, earth, mars, ceres, jupiter, saturn, uranus, neptune, pluto, haumea, makemake, eris]
@@ -270,6 +293,10 @@ the belt really is).""",
     def getMass(self, planet):
         return planet.mass
 
+# This function returns the distance from the Sun for an inputted planet.
+    def getDistanceFromSun(self, planet):
+        return planet.distanceFromSun
+
 # This function returns the diameter of an inputted planet.
     def getDiameter(self, planet):
         return planet.diameter
@@ -298,6 +325,10 @@ the belt really is).""",
     def getPlanetsSortedByMass(self):
         return self.getSortedPlanets(self.getMass, True)
 
+# This function returns the planets in the correct order
+    def getPlanetsInOrder(self):
+        return self.getSortedPlanets(self.getDistanceFromSun, False)
+
 # This function returns a list of all of the planets in the solar system in order of diameter, largest to smallest
     def getPlanetsSortedByDiameter(self):
          return self.getSortedPlanets(self.getDiameter, True)
@@ -311,6 +342,5 @@ the belt really is).""",
     def getPlanetsOverACertainDiameter(self):
         orderedPlanets = self.getSortedPlanets(self.getDiameter, True)
         return self.filterPlanetsByGivenParameter(orderedPlanets, self.provideComparisonPlanetDiameter)
-
 
 
